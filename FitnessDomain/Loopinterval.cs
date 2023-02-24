@@ -14,7 +14,7 @@
         public void ZetGemiddeldeSnelheid(double gemiddeldeSnelheid)
         {
             if (gemiddeldeSnelheid < 5 || gemiddeldeSnelheid > 22) throw new DomeinException("ZetGemiddeldeSnelheid");
-            GemiddeldeSnelheid+= gemiddeldeSnelheid;
+            GemiddeldeSnelheid= gemiddeldeSnelheid;
         }
         public void ZetDuur(int duur) //sec
         {
