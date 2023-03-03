@@ -21,7 +21,16 @@ namespace FitnessDomain
         public double GemiddeldeSnelheid { get;private set; }
         public DateTime Datum { get; set; }
         public int KlantNummer { get; private set; }
-
+        private SortedList<int,Loopinterval> intervallen=new SortedList<int,Loopinterval>();
+        public IReadOnlyList<Loopinterval> GeefIntervallen()
+        {
+            return intervallen.Values.ToList().AsReadOnly();
+        }
+        public void VoegIntervalToe(Loopinterval interval)
+        {
+            if (intervallen.ContainsKey(interval.SeqNr)) { throw new DomeinException("voegintervaltoe"); }
+            intervallen.Add(interval.SeqNr, interval);
+        }
         public void ZetSessieNummer(int sessieNummer)
         {
             if (sessieNummer <= 0) { throw new DomeinException("ZetSessieNummer"); }
@@ -41,6 +50,10 @@ namespace FitnessDomain
         {
             if (klantNummer <= 0) { throw new DomeinException("ZetKlantNummer"); }
             KlantNummer = klantNummer;
+        }
+        public override string ToString()
+        {
+            return $"{KlantNummer},{Duur},{GemiddeldeSnelheid},{Datum},{SessieNummer}";
         }
     }
 }

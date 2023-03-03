@@ -26,5 +26,9 @@
             if (seqNr <= 0) throw new DomeinException("ZetSeqNr");
             SeqNr = seqNr;
         }
+        public override string ToString()
+        {
+            return $"{SeqNr},{Duur},{GemiddeldeSnelheid}";
+        }
     }
 }
